@@ -8,7 +8,7 @@ import info.gridworld.grid.*;
  *  board and can play on the board. The object has its own name, color, and location,
  *  and has an amount of points.
  *
- *  @author  Juhi
+ *  @author  Eshani and Juhi
  *  @version May 21, 2018
  *  @author  Period: 2
  *  @author  Assignment: ExtremeCandyland
