@@ -146,6 +146,7 @@ public class Player
     {
         if (loseTurn)
         {
+            this.loseTurn();
             return;
         }
         doc.getCard( p, this );
