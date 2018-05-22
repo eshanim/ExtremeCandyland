@@ -1,5 +1,7 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+
 import javax.swing.*;
 import javax.swing.border.*;
 
@@ -17,6 +19,8 @@ public class CardsWindow extends JFrame
   JPanel fieldsPanel = new JPanel(new GridLayout(1, 2, 5, 0));
   JButton deck;
   Container co = getContentPane();
+  PlayerList playerList;
+  Path p = new Path();
 
   
   ImageIcon back = new ImageIcon("icons/cardBack.png");
@@ -39,25 +43,12 @@ public class CardsWindow extends JFrame
   ImageIcon icecreamC = new ImageIcon("icons/icecreamC.png");
   ImageIcon lollipopC = new ImageIcon("icons/lollipopC.png");
   ImageIcon peanutC = new ImageIcon("icons/peanutC.png");
-
-
-  /**
-   *  Constructs a new login window.
-   *  @param title title bar text.
-   *  @param server an object that keeps track of all the registered and
-   *  logged-in users.
-   */
-  public static void main(String[] args){
-      CardsWindow window = new CardsWindow("Cards"); 
-      window.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
-      window.setBounds( 0, 0, 187, 290 );
-      window.setVisible( true );
-   }
   
-  public CardsWindow(String title)
+  public CardsWindow(PlayerList players)
   {
-    super(title);
+    super("Deck of Cards");
     thisWindow = this;
+    playerList = players;
     CardListener cardListener = new CardListener();
     decks.shuffle();
   
@@ -187,6 +178,8 @@ public class CardsWindow extends JFrame
         co.add(fieldsPanel);
         thisWindow.setBounds( 0, 0, 375, 290 );
         thisWindow.setVisible( true );
+        
+        playerList.getList().get(playerList.getPosition()).play( decks, p );
     }
   }
 }
