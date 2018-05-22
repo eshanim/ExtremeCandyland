@@ -1,11 +1,30 @@
 import java.util.*;
 import java.awt.Color;
+import java.lang.reflect.Field;
 
-
+/**
+ *  Contains a list of all the cards for the game. Can show the top card so the player
+ *  sees where it is going and it can also call up a card. The cards can be shuffled
+ *  in the list.
+ *
+ *  @author  Eshani
+ *  @version May 21, 2018
+ *  @author  Period: 2
+ *  @author  Assignment: ExtremeCandyland
+ *
+ *  @author  Sources: none
+ */
 public class DeckOfCards
 {
-    List<Card> q;
+    /**
+     * a list of all the cards
+     */
+    private List<Card> q;
     
+    /**
+     * constructs an array list with a certain number of color cards and
+     * character cards
+     */
     public DeckOfCards()
     {
         q = new ArrayList<Card>();
@@ -41,18 +60,75 @@ public class DeckOfCards
         
     }
     
+    /**
+     * This randomizes the items in the deck of cards so that it is shuffled.
+     */
     public void shuffle()
     {
         Collections.shuffle( q );
     }
     
-    public Card showCard(Path p)
+    /**
+     * 
+     * Gets top card and calls that card's play method
+     * @param p the path
+     * @param player the player
+     * @return
+     */
+    public void getCard(Path p, Player player)
+    {
+        Card c = q.remove( 0 );
+        q.add( c );
+        c.moveTo(p, player);
+    }
+    
+    /**
+     * returns the deck of cards as a list
+     * @return list of cards in deck of cards
+     */
+    public List<Card> getList()
+    {
+        return q;
+    }
+    
+    /**
+     * shows the top card
+     * @return the top card
+     */
+    public Card showCard()
     {
         Card c = q.get( 0 );
-        q.remove( 0 );
-        q.add( c );
-        c.moveTo(p);
         return c;
+    }
+    
+    /**
+     * A generic toString implementation that uses reflection to print names and
+     * values of all fields <em>declared in this class</em>.
+     *  @return a string representation of this Brokerage.
+     */
+    public String toString()
+    {
+        String str = this.getClass().getName() + "[";
+        String separator = "";
+
+        Field[] fields = this.getClass().getDeclaredFields();
+
+        for ( Field field : fields )
+        {
+            try
+            {
+                str += separator + field.getType().getName() + " " + field.getName() + ":"
+                    + field.get( this );
+            }
+            catch ( IllegalAccessException ex )
+            {
+                System.out.println( ex );
+            }
+
+            separator = ", ";
+        }
+
+        return str + "]";
     }
     
 }
