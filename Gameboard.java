@@ -39,37 +39,37 @@ public class Gameboard
         JButton bu = board[r][c];
         if (p.getColor() == Color.RED)
         {
-            bu = new JButton(redP);
+            bu.setText( "player" );
         }
         else if (p.getColor() == Color.ORANGE)
         {
-            bu = new JButton(orangeP);
+            bu.setText( "player" );
         }
         else if (p.getColor() == Color.YELLOW)
         {
-            bu = new JButton(yellowP);
+            bu.setIcon(yellowP);
         }
         else if (p.getColor() == Color.GREEN)
         {
-            bu = new JButton(greenP);
+            bu.setIcon(greenP);
         }
         else if (p.getColor() == Color.BLUE)
         {
-            bu = new JButton(blueP);
+            bu.setIcon(blueP);
         }
         else if (p.getColor() == Color.MAGENTA)
         {
-            bu = new JButton(magentaP);
+            bu.setIcon(magentaP);
         }
         
-        if(loc != null && old != null)
-        {
-            board[loc.getRow()][loc.getCol()] = old;
-            
-        }
+//        if(loc != null && old != null)
+//        {
+//            board[loc.getRow()][loc.getCol()] = old;
+//            
+//        }
         mainFrame.repaint();
-        loc = l;
-        old = board[loc.getRow()][loc.getCol()];
+//        loc = l;
+//        old = board[loc.getRow()][loc.getCol()];
     }
     
     private void prepareGUI(){
@@ -93,7 +93,7 @@ public class Gameboard
        //mainFrame.add(statusLabel);
        mainFrame.setVisible(true);  
     }
-    private void showGridLayout(){       
+    void showGridLayout(){       
        JPanel panel = new JPanel();
        panel.setBackground(Color.darkGray);
        //panel.setPreferrize( new Dimension(1000,1000 ));
@@ -120,7 +120,6 @@ public class Gameboard
 
        
        panel.setLayout(layout); 
-       
        JButton g1 = new JButton(g);
        panel.add(g1);
        board[0][0] = g1;
