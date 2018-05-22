@@ -180,6 +180,8 @@ public class CardsWindow extends JFrame
         thisWindow.setVisible( true );
         
         playerList.getList().get(playerList.getPosition()).play( decks, p );
+        System.out.println( playerList.getList().get(playerList.getPosition()).getLocation() );
+        System.out.println( playerList.getList().get(playerList.getPosition()).getName() );
     }
   }
 }
