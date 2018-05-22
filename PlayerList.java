@@ -32,4 +32,9 @@ public class PlayerList
         position = pos;
     }
     
+    public void add(Player p)
+    {
+        players.add( p );
+    }
+    
 }
