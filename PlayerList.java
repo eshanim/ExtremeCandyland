@@ -12,6 +12,11 @@ public class PlayerList
         players = new ArrayList<Player>();
     }
     
+    public PlayerList(ArrayList<Player> player)
+    {
+        players = player;
+    }
+    
     public ArrayList<Player> getList()
     {
         return players;
