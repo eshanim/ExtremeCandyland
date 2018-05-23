@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.border.*;
 
+import info.gridworld.grid.Location;
+
 /**
  *  Provides GUI for displaying cards.
  */
@@ -21,6 +23,7 @@ public class CardsWindow extends JFrame
   Container co = getContentPane();
   PlayerList playerList;
   Path p = new Path();
+  Gameboard gb;
 
   
   ImageIcon back = new ImageIcon("icons/cardBack.png");
@@ -44,11 +47,12 @@ public class CardsWindow extends JFrame
   ImageIcon lollipopC = new ImageIcon("icons/lollipopC.png");
   ImageIcon peanutC = new ImageIcon("icons/peanutC.png");
   
-  public CardsWindow(PlayerList players)
+  public CardsWindow(PlayerList players, Gameboard gb)
   {
     super("Deck of Cards");
     thisWindow = this;
     playerList = players;
+    this.gb = gb;
     CardListener cardListener = new CardListener();
     decks.shuffle();
   
@@ -74,7 +78,7 @@ public class CardsWindow extends JFrame
     public void actionPerformed(ActionEvent e)
     {
         
-        Card ca = decks.showCard();
+        Card ca = decks.showCard(playerList.getList().get( playerList.getPosition() ));
         JButton temp = card;
         if (ca.getType() == "color")
         {
@@ -180,8 +184,25 @@ public class CardsWindow extends JFrame
         thisWindow.setVisible( true );
         
         playerList.getList().get(playerList.getPosition()).play( decks, p );
+        gb.changePlayer();
         System.out.println( playerList.getList().get(playerList.getPosition()).getLocation() );
         System.out.println( playerList.getList().get(playerList.getPosition()).getName() );
+        System.out.println( playerList.getList().get(playerList.getPosition()).getPoints() );
+        playerList.setPosition( playerList.getPosition() + 1 );
+        System.out.println( playerList.getPosition() );
+        if (playerList.getPosition() == playerList.getList().size())
+        {
+            playerList.setPosition( 0 );
+        }
+        for (Player player: playerList.getList())
+        {
+            if (player.getLocation().equals( new Location(1,2) ))
+            {
+                JOptionPane.showMessageDialog(thisWindow, player.getName() + " won!",
+                    "Congratulations!", JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
+
     }
   }
 }
