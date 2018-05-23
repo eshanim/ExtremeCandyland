@@ -16,5 +16,11 @@ public interface Card
      * @param p the path
      * @param player the player
      */
-    public void moveTo(Path p, Player player);
+    void moveTo(Path p, Player player);
+    
+    /**
+     * returns the type of the card
+     * @return
+     */
+    String getType();
 }
