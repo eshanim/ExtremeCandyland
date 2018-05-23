@@ -30,6 +30,7 @@ public class CardsWindow extends JFrame
   PlayerList playerList;
   Path p = new Path();
   Gameboard gb;
+  SpecialWindow sw;
   
   ImageIcon back = new ImageIcon("icons/cardBack.png");
   ImageIcon black = new ImageIcon("icons/blackS.jpg");
@@ -59,7 +60,7 @@ public class CardsWindow extends JFrame
  * @param gb
  *      the Gameboard for the game that the CardsWindow will work with
  */
-public CardsWindow(PlayerList players, Gameboard gb)
+public CardsWindow(PlayerList players, Gameboard gb, SpecialWindow sw)
   {
     super("Deck of Cards");
     thisWindow = this;
