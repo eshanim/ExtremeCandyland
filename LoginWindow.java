@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import javax.swing.*;
 import javax.swing.border.*;
+import javax.swing.JOptionPane;
 
 /**
  *  Provides GUI for registering and logging in users.
@@ -76,6 +77,11 @@ public class LoginWindow extends JFrame
     Container c = getContentPane();
     c.add(fieldsPanel);
   }
+  
+  public PlayerList getList()
+  {
+      return playerList;
+  }
 
   /******************************************************************/
   /***      passwordField and "Login" button events handling      ***/
@@ -92,7 +98,7 @@ public class LoginWindow extends JFrame
       String name5 = nameField5.getText().trim().toLowerCase();
       String name6 = nameField6.getText().trim().toLowerCase();
 
-      ArrayList<Player> players = new ArrayList<Player>();
+      //ArrayList<Player> players = new ArrayList<Player>();
       
       if (!name1.equals( "" ))
       {
@@ -124,7 +130,6 @@ public class LoginWindow extends JFrame
           Player p6 = new Player(name6, Color.MAGENTA);
           playerList.add( p6 );
       }
-
-      }
+    }
   }
 }
