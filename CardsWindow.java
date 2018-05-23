@@ -5,10 +5,16 @@ import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.border.*;
 
-import info.gridworld.grid.Location;
 
 /**
- *  Provides GUI for displaying cards.
+ *  Provides GUI for displaying deck of cards.
+ *  
+ *  @author  eshani
+ *  @version May 21, 2018
+ *  @author  Period: 2
+ *  @author  Assignment: ExtremeCandyland
+ *
+ *  @author  Sources: none
  */
 public class CardsWindow extends JFrame
 {
@@ -24,7 +30,6 @@ public class CardsWindow extends JFrame
   PlayerList playerList;
   Path p = new Path();
   Gameboard gb;
-
   
   ImageIcon back = new ImageIcon("icons/cardBack.png");
   ImageIcon black = new ImageIcon("icons/blackS.jpg");
@@ -47,7 +52,14 @@ public class CardsWindow extends JFrame
   ImageIcon lollipopC = new ImageIcon("icons/lollipopC.png");
   ImageIcon peanutC = new ImageIcon("icons/peanutC.png");
   
-  public CardsWindow(PlayerList players, Gameboard gb)
+ /**
+  * Creates a window to display the clickable deck of cards
+ * @param players
+ *      a PlayerList that will use the CardsWindow
+ * @param gb
+ *      the Gameboard for the game that the CardsWindow will work with
+ */
+public CardsWindow(PlayerList players, Gameboard gb)
   {
     super("Deck of Cards");
     thisWindow = this;
@@ -70,7 +82,7 @@ public class CardsWindow extends JFrame
   }
 
   /******************************************************************/
-  /***      passwordField and "Login" button events handling      ***/
+  /***      deck of cards event handling      ***/
   /******************************************************************/
 
   private class CardListener implements ActionListener
@@ -180,7 +192,7 @@ public class CardsWindow extends JFrame
         fieldsPanel.remove(temp);
         fieldsPanel.add( card );
         co.add(fieldsPanel);
-        thisWindow.setBounds( 0, 0, 375, 290 );
+        thisWindow.setBounds( 1000, 550, 375, 290 );
         thisWindow.setVisible( true );
         
         playerList.getList().get(playerList.getPosition()).play( decks, p );
