@@ -62,6 +62,15 @@ public class CharacterCard implements Card
     }
     
     /**
+     * returns the type of card, which in this case is a character card
+     * @return character
+     */
+    public String getType()
+    {
+        return "character";
+    }
+    
+    /**
      * A generic toString implementation that uses reflection to print names and
      * values of all fields <em>declared in this class</em>.
      *  @return a string representation of this Brokerage.
