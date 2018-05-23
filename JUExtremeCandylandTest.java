@@ -6,7 +6,6 @@ import java.util.*;
 import info.gridworld.grid.Location;
 
 import static org.junit.Assert.*;
-import junit.framework.JUnit4TestAdapter;
 
 /**
  * ExtremeCandyland Tests:
@@ -18,6 +17,7 @@ import junit.framework.JUnit4TestAdapter;
  *      ShortcutTile
  *      ColorCard
  *      CharacterCard
+ *      PlayerList
  *
  *  @author  juhi
  *  @version May 14, 2018
@@ -409,9 +409,10 @@ public class JUExtremeCandylandTest
     @Test
     public void deckOfCardsShowCard()
     {
+        Player pl = new Player(name, color);
         DeckOfCards doc = new DeckOfCards();
-        assertEquals("<<ColorTile: " + doc.showCard() + " should be "
-                        + doc.getList().get( 0 ) + " >>", doc.getList().get( 0 ), doc.showCard());
+        assertEquals("<<ColorTile: " + doc.showCard(pl) + " should be "
+                        + doc.getList().get( 0 ) + " >>", doc.getList().get( 0 ), doc.showCard(pl));
     }
     
     //ColorCard
@@ -647,5 +648,74 @@ public class JUExtremeCandylandTest
     {
         ShortcutTile t = new ShortcutTile(start, color, loc);
         assertEquals("<<should be shortcut", "shortcut", t.getType());
+    }
+    
+  //PlayerList
+    /**
+     * PlayerList Tests:
+     *      PlayerListConstructor - Constructs a new short cut tile with a position
+     *      PlayerListConstructor2 - compares value returned to constructed value
+     *      PlayerListGetList - compares value returned to constructed value
+     *      PlayerListGetPosition - compares value returned to constructed value
+     *      PlayerListSetPosition - compares value returned to constructed value
+     *      PlayerListAdd - compares value returned to constructed value
+     */
+    
+    @Test
+    public void playerListConstructor()
+    {
+        PlayerList pL = new PlayerList();
+        Player pl = new Player(name, color);
+        pL.add(pl);
+        assertNotNull(pL.getList());
+    }
+    
+    @Test
+    public void playerListConstructor2()
+    {
+        ArrayList<Player> playerList = new ArrayList<Player>();
+        Player pl = new Player(name, color);
+        playerList.add(pl);
+        PlayerList pL = new PlayerList(playerList);
+        assertNotNull(pL.getList());
+    }
+    
+    @Test
+    public void playerListGetList()
+    {
+        PlayerList pL = new PlayerList();
+        Player pl = new Player(name, color);
+        ArrayList<Player> playerList = new ArrayList<Player>();
+        playerList.add( pl );
+        pL.add(pl);
+        assertEquals("should be same", pL.getList(), playerList);
+    }
+    
+    @Test
+    public void playerListGetPosition()
+    {
+        PlayerList pL = new PlayerList();
+        Player pl = new Player(name, color);
+        pL.add(pl);
+        assertEquals("should be 0", pL.getPosition(), 0);
+    }
+    
+    @Test
+    public void playerListSetPosition()
+    {
+        PlayerList pL = new PlayerList();
+        Player pl = new Player(name, color);
+        pL.add(pl);
+        pL.setPosition( 1 );
+        assertEquals("should be 1", pL.getPosition(), 1);
+    }
+    
+    @Test
+    public void playerListAdd()
+    {
+        PlayerList pL = new PlayerList();
+        Player pl = new Player(name, color);
+        pL.add(pl);
+        assertEquals("should have a player", pL.getList().get( 0 ), pl);
     }
 }
