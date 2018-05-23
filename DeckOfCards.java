@@ -73,7 +73,6 @@ public class DeckOfCards
      * Gets top card and calls that card's play method
      * @param p the path
      * @param player the player
-     * @return
      */
     public void getCard(Path p, Player player)
     {
@@ -95,7 +94,7 @@ public class DeckOfCards
      * shows the top card
      * @return the top card
      */
-    public Card showCard()
+    public Card showCard(Player player)
     {
         Card c = q.get( 0 );
         return c;
