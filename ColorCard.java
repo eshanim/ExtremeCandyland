@@ -72,6 +72,15 @@ public class ColorCard implements Card
     }
     
     /**
+     * returns the type of the card, which in this case, is a color card
+     * @return color
+     */
+    public String getType()
+    {
+        return "color";
+    }
+    
+    /**
      * A generic toString implementation that uses reflection to print names and
      * values of all fields <em>declared in this class</em>.
      *  @return a string representation of this Brokerage.
