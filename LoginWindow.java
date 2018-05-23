@@ -8,6 +8,13 @@ import javax.swing.JOptionPane;
 
 /**
  *  Provides GUI for registering and logging in users.
+ *  
+ *  @author  eshani
+ *  @version May 21, 2018
+ *  @author  Period: 2
+ *  @author  Assignment: ExtremeCandyland
+ *
+ *  @author  Sources: none
  */
 public class LoginWindow extends JFrame
 {
@@ -27,8 +34,6 @@ public class LoginWindow extends JFrame
   /**
    *  Constructs a new login window.
    *  @param title title bar text.
-   *  @param server an object that keeps track of all the registered and
-   *  logged-in users.
    */
   public LoginWindow(String title)
   {
@@ -84,7 +89,7 @@ public class LoginWindow extends JFrame
   }
 
   /******************************************************************/
-  /***      passwordField and "Login" button events handling      ***/
+  /***      "Play" button events handling      ***/
   /******************************************************************/
 
   private class LoginListener implements ActionListener
