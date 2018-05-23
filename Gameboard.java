@@ -4,20 +4,8 @@ import java.util.ArrayList;
 
 import javax.swing.*;
 
+import info.gridworld.grid.Location;
 
-/**
- *  This class creates a Gameboard object that initializes the Candyland 
- *  gameboard with all the tiles and images on each tile. It has a changePlayer method
- *  that changes the image on the tile the player moves to to simulate the player's
- *  movement on the board.
- *
- *  @author  eshani
- *  @version May 22, 2018
- *  @author  Period: 2
- *  @author  Assignment: ExtremeCandyland
- *
- *  @author  Sources: 
- */
 public class Gameboard
 {
     private JFrame mainFrame;
@@ -47,21 +35,11 @@ public class Gameboard
     Player bluePlayer = new Player("name", Color.BLACK);
     Player purplePlayer = new Player("name", Color.BLACK);
     
-    /**
-     * Constructs a new Gameboard for the given list of players
-     * @param players
-     *      a PlayerList of all the players currently playing
-     */
     public Gameboard(PlayerList players){
        prepareGUI();
        playerList = players;
     }
 
-    /**
-     * Changes the icon of the image the player has moved to 
-     * so it can show the icon of a player, based on its
-     * color, on it.
-     */
     public void changePlayer()
     {   
         redPlayer.moveTo( new Location(8,1) );
@@ -182,10 +160,6 @@ public class Gameboard
         mainFrame.repaint();
     }
     
-    /**
-     * Initializes the JFrame and JPanel for the Gameboard, 
-     * and sets the size and layout for it.
-     */
     private void prepareGUI(){
        mainFrame = new JFrame("Extreme Candyland");
        mainFrame.setSize(1000,1000);
@@ -207,11 +181,6 @@ public class Gameboard
        //mainFrame.add(statusLabel);
        mainFrame.setVisible(true);  
     }
-    
-    /**
-     * Adds all the tiles to the grid layout and adds the panel to the main
-     * controlPanel.
-     */
     void showGridLayout(){       
        JPanel panel = new JPanel();
        panel.setBackground(Color.darkGray);
