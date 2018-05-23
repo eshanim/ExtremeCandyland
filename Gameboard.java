@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import javax.swing.*;
 
+import info.gridworld.grid.Location;
+
 public class Gameboard
 {
     private JFrame mainFrame;
@@ -24,6 +26,7 @@ public class Gameboard
     
     private Location loc;
     private JButton old;
+    private Icon icon;
     
     public Gameboard(PlayerList players){
        prepareGUI();
@@ -37,13 +40,14 @@ public class Gameboard
         int r = l.getRow();
         int c = l.getCol();
         JButton bu = board[r][c];
+        Icon i = bu.getIcon();
         if (p.getColor() == Color.RED)
         {
-            bu.setText( "player" );
+            bu.setIcon(redP);
         }
         else if (p.getColor() == Color.ORANGE)
         {
-            bu.setText( "player" );
+            bu.setIcon(orangeP);
         }
         else if (p.getColor() == Color.YELLOW)
         {
@@ -62,14 +66,15 @@ public class Gameboard
             bu.setIcon(magentaP);
         }
         
-//        if(loc != null && old != null)
-//        {
-//            board[loc.getRow()][loc.getCol()] = old;
-//            
-//        }
+        if(loc != null && old != null)
+        {
+            old.setIcon( icon );
+            
+        }
         mainFrame.repaint();
-//        loc = l;
-//        old = board[loc.getRow()][loc.getCol()];
+        loc = l;
+        old = board[loc.getRow()][loc.getCol()];
+        icon = i;
     }
     
     private void prepareGUI(){
@@ -117,6 +122,7 @@ public class Gameboard
        ImageIcon candycane = new ImageIcon("icons/candycane.png");
        ImageIcon gingerman = new ImageIcon("icons/gingerman.png");
        ImageIcon licorice = new ImageIcon("icons/licorice.png");
+       ImageIcon redStart = new ImageIcon("icons/redStart.png");
 
        
        panel.setLayout(layout); 
@@ -1240,7 +1246,7 @@ public class Gameboard
        panel.add(r22);
        board[13][19] = r22;
        
-       JButton r61 = new JButton(r);
+       JButton r61 = new JButton(redStart);
        panel.add(r61);
        board[14][0] = r61;
        
@@ -1320,6 +1326,10 @@ public class Gameboard
        panel.add(gum);
        board[14][19] = gum;
        
+
+       
+       
+       this.changePlayer();
        controlPanel.doLayout();
        controlPanel.add(panel);
        //controlPanel.setPreferredSize( new Dimension(100, 1000000) );
