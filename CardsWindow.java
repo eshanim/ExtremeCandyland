@@ -5,16 +5,10 @@ import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.border.*;
 
+import info.gridworld.grid.Location;
 
 /**
- *  Provides GUI for displaying deck of cards.
- *  
- *  @author  eshani
- *  @version May 21, 2018
- *  @author  Period: 2
- *  @author  Assignment: ExtremeCandyland
- *
- *  @author  Sources: none
+ *  Provides GUI for displaying cards.
  */
 public class CardsWindow extends JFrame
 {
@@ -31,6 +25,7 @@ public class CardsWindow extends JFrame
   Path p = new Path();
   Gameboard gb;
   SpecialWindow sw;
+
   
   ImageIcon back = new ImageIcon("icons/cardBack.png");
   ImageIcon black = new ImageIcon("icons/blackS.jpg");
@@ -53,19 +48,13 @@ public class CardsWindow extends JFrame
   ImageIcon lollipopC = new ImageIcon("icons/lollipopC.png");
   ImageIcon peanutC = new ImageIcon("icons/peanutC.png");
   
- /**
-  * Creates a window to display the clickable deck of cards
- * @param players
- *      a PlayerList that will use the CardsWindow
- * @param gb
- *      the Gameboard for the game that the CardsWindow will work with
- */
-public CardsWindow(PlayerList players, Gameboard gb, SpecialWindow sw)
+  public CardsWindow(PlayerList players, Gameboard gb, SpecialWindow sw)
   {
     super("Deck of Cards");
     thisWindow = this;
     playerList = players;
     this.gb = gb;
+    this.sw = sw;
     CardListener cardListener = new CardListener();
     decks.shuffle();
   
@@ -83,7 +72,7 @@ public CardsWindow(PlayerList players, Gameboard gb, SpecialWindow sw)
   }
 
   /******************************************************************/
-  /***      deck of cards event handling      ***/
+  /***      passwordField and "Login" button events handling      ***/
   /******************************************************************/
 
   private class CardListener implements ActionListener
@@ -212,6 +201,7 @@ public CardsWindow(PlayerList players, Gameboard gb, SpecialWindow sw)
                     "Congratulations!", JOptionPane.INFORMATION_MESSAGE);
             }
         }
+
     }
   }
 }
