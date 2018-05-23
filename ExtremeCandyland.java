@@ -39,6 +39,7 @@ public class ExtremeCandyland
         int count = 0;
         while(players.getList().size() == 0)
         {
+            System.out.println("");
             count++;
         }
         Gameboard gb = new Gameboard(players);
