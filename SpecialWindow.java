@@ -5,10 +5,16 @@ import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.border.*;
 
-import info.gridworld.grid.Location;
 
 /**
- *  Provides GUI for displaying cards.
+ *  Provides GUI for displaying special moves.
+ *  
+ *  @author  juhi
+ *  @version May 21, 2018
+ *  @author  Period: 2
+ *  @author  Assignment: ExtremeCandyland
+ *
+ *  @author  Sources: none
  */
 public class SpecialWindow extends JFrame
 {
@@ -29,7 +35,14 @@ public class SpecialWindow extends JFrame
 //      thisWindow.setVisible( true );
 //  }
   
-  public SpecialWindow(PlayerList players, Gameboard gb)
+ /**
+  * Creates a new window to display possible special moves and points required.
+ * @param players
+ *      PlayerList of players in the game
+ * @param gb
+ *      Gameboard being used in the game
+ */
+public SpecialWindow(PlayerList players, Gameboard gb)
   {
     super("Special Moves");
     thisWindow = this;
@@ -153,7 +166,7 @@ public class SpecialWindow extends JFrame
   }
 
   /******************************************************************/
-  /***      passwordField and "Login" button events handling      ***/
+  /***      button events handling      ***/
   /******************************************************************/
   
   private class MoveListener implements ActionListener
