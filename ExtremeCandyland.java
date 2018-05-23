@@ -31,29 +31,30 @@ public class ExtremeCandyland
     {        
         LoginWindow lw = new LoginWindow("Login");
 
-            lw.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
-            lw.setBounds( 0, 0, 360, 500 );
-            lw.setVisible( true );
+        lw.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
+        lw.setBounds( 0, 0, 360, 500 );
+        lw.setVisible( true );
         
         players = lw.getList();
         int count = 0;
         while(players.getList().size() == 0)
         {
-            System.out.println( players.getList().size() );
             count++;
         }
         Gameboard gb = new Gameboard(players);
         gb.showGridLayout();
         
-        CardsWindow window = new CardsWindow(players, gb); 
-        window.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
-        window.setBounds( 1000, 550, 187, 290 );
-        window.setVisible( true );
-        
         SpecialWindow sw = new SpecialWindow(players, gb);
         sw.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
         sw.setBounds( 1000, 0, 400, 500 );
         sw.setVisible( true );
+        
+        CardsWindow window = new CardsWindow(players, gb, sw); 
+        window.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
+        window.setBounds( 1000, 550, 187, 290 );
+        window.setVisible( true );
+        
+
         
     }
 
