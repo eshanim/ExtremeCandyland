@@ -192,16 +192,13 @@ public CardsWindow(PlayerList players, Gameboard gb)
         fieldsPanel.remove(temp);
         fieldsPanel.add( card );
         co.add(fieldsPanel);
-        thisWindow.setBounds( 1000, 550, 375, 290 );
+        thisWindow.setBounds( 0, 0, 375, 290 );
         thisWindow.setVisible( true );
         
         playerList.getList().get(playerList.getPosition()).play( decks, p );
         gb.changePlayer();
-        System.out.println( playerList.getList().get(playerList.getPosition()).getLocation() );
-        System.out.println( playerList.getList().get(playerList.getPosition()).getName() );
-        System.out.println( playerList.getList().get(playerList.getPosition()).getPoints() );
+        sw.changePoints();
         playerList.setPosition( playerList.getPosition() + 1 );
-        System.out.println( playerList.getPosition() );
         if (playerList.getPosition() == playerList.getList().size())
         {
             playerList.setPosition( 0 );
@@ -214,7 +211,6 @@ public CardsWindow(PlayerList players, Gameboard gb)
                     "Congratulations!", JOptionPane.INFORMATION_MESSAGE);
             }
         }
-
     }
   }
 }
