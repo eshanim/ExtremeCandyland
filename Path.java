@@ -55,7 +55,7 @@ public class Path
         q.add( new ColorTile( Color.BLUE, new Location(14,16) ) ); //16
         q.add( new ColorTile( Color.GREEN, new Location(14,17) ) ); //17
         q.add( new ColorTile( Color.ORANGE, new Location(14,18) ) ); //18
-        q.add( new CharacterTile( "mr. mint", 3, new Location( 14,19) ) ); //19
+        q.add( new CharacterTile( "plumpy", 3, new Location( 14,19) ) ); //19
         q.add( new ColorTile( Color.RED, new Location(13,19) ) ); //20
         q.add( new ColorTile( Color.MAGENTA, new Location(12,19) ) ); //21
         q.add( new ColorTile( Color.YELLOW, new Location(12,18) ) ); //22
@@ -77,7 +77,7 @@ public class Path
         q.add( new ColorTile( Color.RED, new Location(10,18) ) ); //38
         q.add( new ColorTile( Color.MAGENTA, new Location(10, 19) ) ); //39
         q.add( new ColorTile( Color.YELLOW, new Location(9,19) ) ); //40
-        q.add( new CharacterTile("plumpy", 3, new Location(8,19) ) ); //41
+        q.add( new CharacterTile("mr. mint", 3, new Location(8,19) ) ); //41
         q.add( new ColorTile( Color.BLUE, new Location(8,18) ) ); //42
         q.add( new ColorTile( Color.GREEN, new Location(8,17) ) ); //43
         q.add( new ColorTile( Color.ORANGE, new Location(8,16) ) ); //44
