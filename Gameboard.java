@@ -23,10 +23,17 @@ public class Gameboard
     ImageIcon magentaP = new ImageIcon("icons/magentaP.png");
     
     private JButton[][] board = new JButton[15][20];
-    
     private Location loc;
     private JButton old;
     private Icon icon;
+    private ArrayList<Icon> listBut;
+    
+    Player redPlayer = new Player("name", Color.BLACK);
+    Player orangePlayer = new Player("name", Color.BLACK);
+    Player yellowPlayer = new Player("name", Color.BLACK);
+    Player greenPlayer = new Player("name", Color.BLACK);
+    Player bluePlayer = new Player("name", Color.BLACK);
+    Player purplePlayer = new Player("name", Color.BLACK);
     
     public Gameboard(PlayerList players){
        prepareGUI();
@@ -34,47 +41,123 @@ public class Gameboard
     }
 
     public void changePlayer()
-    {
-        Player p = playerList.getList().get(playerList.getPosition());
-        Location l = p.getLocation();
-        int r = l.getRow();
-        int c = l.getCol();
-        JButton bu = board[r][c];
-        Icon i = bu.getIcon();
-        if (p.getColor() == Color.RED)
+    {   
+        redPlayer.moveTo( new Location(8,1) );
+        orangePlayer.moveTo( new Location(8,1) );
+        yellowPlayer.moveTo( new Location(8,1) );
+        greenPlayer.moveTo( new Location(8,1) );
+        bluePlayer.moveTo( new Location(8,1) );
+        purplePlayer.moveTo( new Location(8,1) );
+        
+        for (Player player: playerList.getList())
         {
-            bu.setIcon(redP);
+            if (player.getColor().equals( Color.RED ))
+            {
+                redPlayer.moveTo( player.getLocation());
+            }
+            else if (player.getColor().equals( Color.ORANGE ))
+            {
+                orangePlayer.moveTo( player.getLocation());
+            }
+            else if (player.getColor().equals( Color.YELLOW ))
+            {
+                yellowPlayer.moveTo( player.getLocation());
+            }
+            else if (player.getColor().equals( Color.GREEN ))
+            {
+                greenPlayer.moveTo( player.getLocation());
+            }
+            else if (player.getColor().equals( Color.BLUE ))
+            {
+                bluePlayer.moveTo( player.getLocation());
+            }
+            else if (player.getColor().equals( Color.MAGENTA ))
+            {
+                purplePlayer.moveTo( player.getLocation());
+            }
         }
-        else if (p.getColor() == Color.ORANGE)
+        int count = 0;
+        for(int row = 0; row < board.length; row++)
         {
-            bu.setIcon(orangeP);
-        }
-        else if (p.getColor() == Color.YELLOW)
-        {
-            bu.setIcon(yellowP);
-        }
-        else if (p.getColor() == Color.GREEN)
-        {
-            bu.setIcon(greenP);
-        }
-        else if (p.getColor() == Color.BLUE)
-        {
-            bu.setIcon(blueP);
-        }
-        else if (p.getColor() == Color.MAGENTA)
-        {
-            bu.setIcon(magentaP);
+            for (int c = 0; c < board[0].length; c++)
+            {
+                Location locat = new Location(row,c);
+                if (!redPlayer.getLocation().equals(locat)
+                                && !orangePlayer.getLocation().equals( locat )
+                                && !yellowPlayer.getLocation().equals( locat )
+                                && !greenPlayer.getLocation().equals( locat )
+                                && !bluePlayer.getLocation().equals( locat )
+                                && !purplePlayer.getLocation().equals( locat ))
+                {
+                    board[row][c].setIcon( listBut.get( count ) );
+                }
+                count++;
+            }
         }
         
-        if(loc != null && old != null)
+        for(Player player: playerList.getList())
         {
-            old.setIcon( icon );
-            
+            Location l = player.getLocation();
+            int r = l.getRow();
+            int c = l.getCol();
+            JButton bu = board[r][c];
+            if (player.getColor() == Color.RED)
+            {
+                bu.setIcon(redP);
+            }
+            else if (player.getColor() == Color.ORANGE)
+            {
+                bu.setIcon(orangeP);
+            }
+            else if (player.getColor() == Color.YELLOW)
+            {
+                bu.setIcon(yellowP);
+            }
+            else if (player.getColor() == Color.GREEN)
+            {
+                bu.setIcon(greenP);
+            }
+            else if (player.getColor() == Color.BLUE)
+            {
+                bu.setIcon(blueP);
+            }
+            else if (player.getColor() == Color.MAGENTA)
+            {
+                bu.setIcon(magentaP);
+            }
         }
+        
+        Player p = playerList.getList().get(playerList.getPosition());
+//        Location l = p.getLocation();
+//        int r = l.getRow();
+//        int c = l.getCol();
+//        JButton bu = board[r][c];
+//        if (p.getColor() == Color.RED)
+//        {
+//            bu.setIcon(redP);
+//        }
+//        else if (p.getColor() == Color.ORANGE)
+//        {
+//            bu.setIcon(orangeP);
+//        }
+//        else if (p.getColor() == Color.YELLOW)
+//        {
+//            bu.setIcon(yellowP);
+//        }
+//        else if (p.getColor() == Color.GREEN)
+//        {
+//            bu.setIcon(greenP);
+//        }
+//        else if (p.getColor() == Color.BLUE)
+//        {
+//            bu.setIcon(blueP);
+//        }
+//        else if (p.getColor() == Color.MAGENTA)
+//        {
+//            bu.setIcon(magentaP);
+//        }
+        
         mainFrame.repaint();
-        loc = l;
-        old = board[loc.getRow()][loc.getCol()];
-        icon = i;
     }
     
     private void prepareGUI(){
@@ -106,6 +189,10 @@ public class Gameboard
        layout.setHgap(-10);
        layout.setVgap(-10);
        
+       ImageIcon bl1 = new ImageIcon("icons/blackS1.jpg");
+       ImageIcon bl2 = new ImageIcon("icons/blackS2.jpg");
+       ImageIcon bl3 = new ImageIcon("icons/blackS3.jpg");
+       ImageIcon bl4 = new ImageIcon("icons/blackS4.jpg");
        ImageIcon r = new ImageIcon("icons/redS.png");
        ImageIcon p = new ImageIcon("icons/pinkS.png");
        ImageIcon o = new ImageIcon("icons/orangeS.png");
@@ -121,41 +208,52 @@ public class Gameboard
        ImageIcon gumdrop = new ImageIcon("icons/gumdrop.png");
        ImageIcon candycane = new ImageIcon("icons/candycane.png");
        ImageIcon gingerman = new ImageIcon("icons/gingerman.png");
-       ImageIcon licorice = new ImageIcon("icons/licorice.png");
+       ImageIcon plicorice = new ImageIcon("icons/plicorice.png");
+       ImageIcon ylicorice = new ImageIcon("icons/ylicorice.png");
+       ImageIcon blicorice = new ImageIcon("icons/blicorice.png");
        ImageIcon redStart = new ImageIcon("icons/redStart.png");
 
+       listBut = new ArrayList<Icon>();
        
        panel.setLayout(layout); 
        JButton g1 = new JButton(g);
        panel.add(g1);
+       //listBut.add( g1 );
        board[0][0] = g1;
        
        JButton o1 = new JButton(o);
        panel.add(o1);
+       //listBut.add( o1 );
        board[0][1] = o1;
        
        JButton r1 = new JButton(r);
        panel.add(r1);
+       //listBut.add( r1 );
        board[0][2] = r1;
        
        JButton w1 = new JButton(w);
        panel.add(w1);
+       //listBut.add( w1 );
        board[0][3] = w1;
        
        JButton g2 = new JButton(g);
        panel.add(g2);
+       //listBut.add( g2 );
        board[0][4] = g2;
        
        JButton b1 = new JButton(b);
        panel.add(b1);
+       //listBut.add( b1 );
        board[0][5] = b1;
        
-       JButton y1 = new JButton(y);
+       JButton y1 = new JButton(ylicorice);
        panel.add(y1);
+       //listBut.add( y1 );
        board[0][6] = y1;
        
        JButton m1 = new JButton(m);
        panel.add(m1);
+       //listBut.add( m1 );
        board[0][7] = m1;
        
        JButton r2 = new JButton(r);
@@ -474,7 +572,7 @@ public class Gameboard
        panel.add(g9);
        board[4][6] = g9;
        
-       JButton b9 = new JButton(b);
+       JButton b9 = new JButton(blicorice);
        panel.add(b9);
        board[4][7] = b9;
        
@@ -822,7 +920,7 @@ public class Gameboard
        panel.add(y14);
        board[8][13] = y14;
        
-       JButton m13 = new JButton(m);
+       JButton m13 = new JButton(plicorice);
        panel.add(m13);
        board[8][14] = m13;
        
@@ -902,13 +1000,13 @@ public class Gameboard
        panel.add(w113);
        board[9][13] = w113;
 
-       JButton w114 = new JButton(w);
-       panel.add(w114);
-       board[9][14] = w114;
+       JButton bl33 = new JButton(bl3);
+       panel.add(bl33);
+       board[9][14] = bl33;
 
-       JButton w115 = new JButton(w);
-       panel.add(w115);
-       board[9][15] = w115;
+       JButton bl44 = new JButton(bl4);
+       panel.add(bl44);
+       board[9][15] = bl44;
 
        JButton w116 = new JButton(w);
        panel.add(w116);
@@ -1106,9 +1204,9 @@ public class Gameboard
        panel.add(w142);
        board[12][4] = w142;
 
-       JButton w143 = new JButton(w);
-       panel.add(w143);
-       board[12][5] = w143;
+       JButton bl22 = new JButton(bl2);
+       panel.add(bl22);
+       board[12][5] = bl22;
 
        JButton w144 = new JButton(w);
        panel.add(w144);
@@ -1182,9 +1280,9 @@ public class Gameboard
        panel.add(w153);
        board[13][3] = w153;
 
-       JButton w154 = new JButton(w);
-       panel.add(w154);
-       board[13][4] = w154;
+       JButton bl11 = new JButton(bl1);
+       panel.add(bl11);
+       board[13][4] = bl11;
 
        JButton w155 = new JButton(w);
        panel.add(w155);
@@ -1326,8 +1424,13 @@ public class Gameboard
        panel.add(gum);
        board[14][19] = gum;
        
-
-       
+       for(int row = 0; row < board.length; row++)
+       {
+           for (int c = 0; c < board[0].length; c++)
+           {
+               listBut.add( board[row][c].getIcon() );
+           }
+       }
        
        this.changePlayer();
        controlPanel.doLayout();
